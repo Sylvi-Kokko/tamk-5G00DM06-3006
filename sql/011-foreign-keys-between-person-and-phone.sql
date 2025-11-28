@@ -7,9 +7,7 @@ PRAGMA foreign_keys = ON;
 DROP TABLE IF EXISTS dual;
 
 CREATE TABLE dual
-(
-    dummy CHAR NOT NULL
-);
+(dummy CHAR NOT NULL);
 
 INSERT INTO dual (dummy) VALUES ('');
 
@@ -24,7 +22,7 @@ DROP TABLE IF EXISTS phone;
 CREATE TABLE phone
 (
       id        INTEGER         NOT NULL
-    , number    VARCHAR(100)    NOT NULL
+    , number    VARCHAR(12)    NOT NULL
     , comment   VARCHAR(100)
 
     , CONSTRAINT phone__id_pk
@@ -38,11 +36,11 @@ DROP TABLE IF EXISTS person;
 CREATE TABLE person
 (
       id        INTEGER         NOT NULL
-    , last      VARCHAR(200)    NOT NULL
-    , first     VARCHAR(200)    NOT NULL
+    , last      VARCHAR(150)    NOT NULL
+    , first     VARCHAR(150)    NOT NULL
     , phone     INTEGER
-    , city      VARCHAR(200)
-    , address   VARCHAR(200)
+    , city      VARCHAR(150)
+    , address   VARCHAR(150)
     , dob       DATE
 
     , CONSTRAINT person__id_pk
