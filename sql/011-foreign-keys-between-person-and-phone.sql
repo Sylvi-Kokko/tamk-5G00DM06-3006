@@ -1,5 +1,5 @@
 -- Author: Sylvi Kokko <sylvi.kokko@tuni.fi>
--- Date: 2025-1-28
+-- Date: 2025-11-28
 -- File: 011-foreign-key-between-person-and-phone.sql
 
 PRAGMA foreign_keys = ON;
