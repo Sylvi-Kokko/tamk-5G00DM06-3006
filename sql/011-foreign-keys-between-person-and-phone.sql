@@ -25,7 +25,7 @@ CREATE TABLE phone
 (
       id        INTEGER         NOT NULL
     , number    VARCHAR(100)    NOT NULL
-    , comment   VARCHAR(1000)
+    , comment   VARCHAR(100)
 
     , CONSTRAINT phone__id_pk
       PRIMARY KEY (id)
