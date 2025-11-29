@@ -36,6 +36,8 @@ CREATE TABLE project
 
 COMMIT;
 
+SELECT dummy AS 'INSERT INTO: project' FROM dual;
+
 -- Fails job title not in the list
 INSERT INTO project (project_id, project_name, manager_name, manager_phone_number, manger_title)
 VALUES (1, 'New Website Launch', 'Alice Johnson', 1234567890, 'sales');
