@@ -1,5 +1,5 @@
 -- Author: Sylvi Kokko <sylvi.kokko@tuni.fi>
--- Date: 2025-11-27
+-- Date: 2025-11-29
 -- File: 031-index-person-first.sql
 
 PRAGMA foreign_keys = ON;
