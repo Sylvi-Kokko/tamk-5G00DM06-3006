@@ -1,4 +1,5 @@
 const { Stop, Line } = require('../db')
+const { Op } = require('sequelize')
 
 module.exports = {
   async getAll (req, res, next) {

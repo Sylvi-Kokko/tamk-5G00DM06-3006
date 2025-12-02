@@ -8,6 +8,4 @@ router.post('/', lineController.create)
 router.put('/:id', lineController.update)
 router.delete('/:id', lineController.remove)
 
-
-
 module.exports = router

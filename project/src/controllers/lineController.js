@@ -1,22 +1,23 @@
 const { Line, Stop, LineStop, sequelize } = require('../db')
+const { Op } = require('sequelize')
 
 module.exports = {
   async getAll (req, res, next) {
     try {
       const lines = await Line.findAll({
-      include: [
-        {
-          model: Stop,
-          as: 'stops',
-          through: { attributes: [] },
-        }
-      ],
-      order: [
-        [{ model: Stop, as: 'stops' }, LineStop, 'order', 'ASC']
-      ]
-      });
+        include: [
+          {
+            model: Stop,
+            as: 'stops',
+            through: { attributes: [] }
+          }
+        ],
+        order: [
+          [{ model: Stop, as: 'stops' }, LineStop, 'order', 'ASC']
+        ]
+      })
 
-      res.json(lines);
+      res.json(lines)
     } catch (err) { next(err) }
   },
 
@@ -34,7 +35,7 @@ module.exports = {
           }
         }
 
-        const stopIds = [ ...new Set(stops.map(s => s.stopId)) ]
+        const stopIds = [...new Set(stops.map(s => s.stopId))]
         const existing = await Stop.findAll({ where: { id: stopIds } })
         if (existing.length !== stopIds.length) {
           return res.status(404).json({ message: 'One or more stops not found' })
@@ -131,5 +132,3 @@ module.exports = {
     }
   }
 }
-
-

@@ -9,6 +9,4 @@ router.post('/', tramController.create)
 router.put('/:id', tramController.update)
 router.delete('/:id', tramController.remove)
 
-
-
 module.exports = router

@@ -25,8 +25,8 @@ Stop.belongsToMany(Line, {
 })
 
 LineStop.associate = (models) => {
-    LineStop.belongsTo(models.Line, { foreignKey: 'lineId', onDelete: 'CASCADE' })
-    LineStop.belongsTo(models.Stop, { foreignKey: 'stopId', onDelete: 'CASCADE' })
-  }
+  LineStop.belongsTo(models.Line, { foreignKey: 'lineId', onDelete: 'CASCADE' })
+  LineStop.belongsTo(models.Stop, { foreignKey: 'stopId', onDelete: 'CASCADE' })
+}
 
 module.exports = { sequelize, Tram, Stop, Line, LineStop }
