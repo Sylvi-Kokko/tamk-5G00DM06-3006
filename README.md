@@ -1,6 +1,6 @@
 # PROJECT
 
-##Setup
+## Setup
 Copy project into your computer and then run
     npm install
     npm start
