@@ -11,7 +11,7 @@ Copy project into your computer and then run
 ### Tram
 | id | name | numberOfCars | lineId | nextStopId
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| Integer | String | Integer | Integer | Integer
+| Integer | String | Integer (min 3) | Integer | Integer
 
 
 ### Line
@@ -27,7 +27,7 @@ Copy project into your computer and then run
 ### LineStop
 | id | lineId | stopId | order |
 | ----------- | ----------- | ----------- | ----------- |
-| Integer | Integer | Integer | Integer |
+| Integer | Integer | Integer | Integer (min 1)|
 
 ## Example queries
 
