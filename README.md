@@ -101,8 +101,8 @@ PUT http://localhost:3000/trams/1
 
 ### Search
 
-GET /trams/search?name=Veera&lineId=2&minCars=3&maxCars=6&nextStopId=2
+GET http://localhost:3000/trams/search?name=Veera&lineId=2&minCars=3&maxCars=6&nextStopId=2
 
-GET /stops/search?name=1
+GET http://localhost:3000/stops/search?name=1
 
-GET /lines/search?name=1
+GET http://localhost:3000/lines/search?name=1
