@@ -1,7 +1,9 @@
 const { Line, Stop, LineStop, sequelize } = require('../db')
+const { validateString, validateInteger } = require('../middleware/dataValidator')
 const { Op } = require('sequelize')
 
 module.exports = {
+
   async getAll (req, res, next) {
     try {
       const lines = await Line.findAll({
@@ -23,7 +25,14 @@ module.exports = {
 
   async create (req, res, next) {
     try {
+      const idCheck = validateInteger(req.body.id)
+      if (!idCheck.valid) return res.status(400).json({ message: 'id must be an integer' })
+      const existing = await Line.findByPk(req.body.id)
+      if (existing != null) return res.status(409).json({ message: 'id already in use' })
       const { stops, ...lineData } = req.body
+
+      const nameCheck = validateString(lineData.name)
+      if (!nameCheck.valid) return res.status(400).json({ message: nameCheck.message })
 
       if (Array.isArray(stops)) {
         for (const it of stops) {
@@ -68,6 +77,10 @@ module.exports = {
 
   async getOne (req, res, next) {
     try {
+      const idNum = Number(req.params.id)
+      const idCheck = validateInteger(idNum)
+      if (!idCheck.valid) return res.status(400).json({ message: 'id must be an integer' })
+
       const line = await Line.findByPk(req.params.id)
       if (!line) return res.status(404).json({ message: 'Line not found' })
       res.json(line)
@@ -76,6 +89,15 @@ module.exports = {
 
   async update (req, res, next) {
     try {
+      const idNum = Number(req.params.id)
+      const idCheck = validateInteger(idNum)
+      if (!idCheck.valid) return res.status(400).json({ message: 'id must be an integer' })
+      const existing = await Line.findByPk(req.params.id)
+      if (existing === null) return res.status(404).json({ message: 'id not found' })
+      if (typeof req.body.name !== 'undefined') {
+        const nameCheck = validateString(req.body.name)
+        if (!nameCheck.valid) return res.status(400).json({ message: nameCheck.message })
+      }
       const id = req.params.id
 
       if (Array.isArray(req.body.stops)) {
@@ -112,6 +134,11 @@ module.exports = {
 
   async remove (req, res, next) {
     try {
+      const idNum = Number(req.params.id)
+      const idCheck = validateInteger(idNum)
+      if (!idCheck.valid) return res.status(400).json({ message: 'id must be an integer' })
+      const existing = await Line.findByPk(req.body.id)
+      if (existing === null) return res.status(404).json({ message: 'id not found' })
       await Line.destroy({ where: { id: req.params.id } })
       res.json({ message: 'Deleted' })
     } catch (err) { next(err) }
@@ -120,6 +147,11 @@ module.exports = {
   async search (req, res, next) {
     try {
       const { name } = req.query
+      if (typeof name !== 'undefined') {
+        const nameCheck = validateString(name)
+        if (!nameCheck.valid) return res.status(400).json({ message: nameCheck.message })
+      }
+
 
       const where = {}
 
@@ -130,7 +162,7 @@ module.exports = {
       const lines = await Line.findAll({
         where,
         include: [
-          { model: Line }
+          { model: Stop, as: 'stops' }
         ]
       })
 
