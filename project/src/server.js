@@ -18,7 +18,16 @@ app.use((req, res, next) => {
   })
 })
 
-app.use(errorHandler)
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && 'body' in err) {
+    return res.status(400).json({
+      ok: false,
+      error: "Invalid JSON format",
+      message: err.message
+    });
+  }
+  next(err);
+});
 
 sequelize.sync().then(() => {
   console.log('Database synced')
