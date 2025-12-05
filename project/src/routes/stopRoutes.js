@@ -5,6 +5,7 @@ const stopController = require('../controllers/stopController')
 router.get('/', stopController.getAll)
 router.get('/search', stopController.search)
 router.post('/', stopController.create)
+router.get('/:id', stopController.getOne)
 router.put('/:id', stopController.update)
 router.delete('/:id', stopController.remove)
 
