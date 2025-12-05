@@ -18,6 +18,14 @@ module.exports = {
     } catch (err) { next(err) }
   },
 
+  async getOne (req, res, next) {
+    try {
+      const stop = await Stop.findByPk(req.params.id)
+      if (!stop) return res.status(404).json({ message: 'Stop not found' })
+      res.json(stop)
+    } catch (err) { next(err) }
+  },
+
   async update (req, res, next) {
     try {
       await Stop.update(req.body, { where: { id: req.params.id } })

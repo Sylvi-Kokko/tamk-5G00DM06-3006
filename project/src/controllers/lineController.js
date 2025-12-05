@@ -66,6 +66,14 @@ module.exports = {
     } catch (err) { next(err) }
   },
 
+  async getOne (req, res, next) {
+    try {
+      const line = await Line.findByPk(req.params.id)
+      if (!line) return res.status(404).json({ message: 'Line not found' })
+      res.json(line)
+    } catch (err) { next(err) }
+  },
+
   async update (req, res, next) {
     try {
       const id = req.params.id

@@ -1,11 +1,17 @@
 # PROJECT
 
+## Setup
+Copy project into your computer and then run
+
+        npm install
+        npm start
+
 ## Tables
 
 ### Tram
 | id | name | numberOfCars | lineId | nextStopId
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| Integer | String | Integer | Integer | Integer
+| Integer | String | Integer (min 3) | Integer | Integer
 
 
 ### Line
@@ -21,7 +27,7 @@
 ### LineStop
 | id | lineId | stopId | order |
 | ----------- | ----------- | ----------- | ----------- |
-| Integer | Integer | Integer | Integer |
+| Integer | Integer | Integer | Integer (min 1)|
 
 ## Example queries
 
@@ -95,8 +101,8 @@ PUT http://localhost:3000/trams/1
 
 ### Search
 
-GET /trams/search?name=Veera&lineId=2&minCars=3&maxCars=6&nextStopId=2
+GET http://localhost:3000/trams/search?name=Veera&lineId=2&minCars=3&maxCars=6&nextStopId=2
 
-GET /stops/search?name=1
+GET http://localhost:3000/stops/search?name=1
 
-GET /lines/search?name=1
+GET http://localhost:3000/lines/search?name=1
